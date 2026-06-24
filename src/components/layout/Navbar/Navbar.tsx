@@ -263,9 +263,16 @@ export function Navbar() {
             <button
               onClick={toggleDarkMode}
               aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-              className="w-9 h-9 flex items-center justify-center rounded-full text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"
+              className="w-9 h-9 flex items-center justify-center rounded-full text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all duration-200 active:scale-90 overflow-hidden group/toggle"
             >
-              <Icon name={darkMode ? 'light_mode' : 'dark_mode'} className="text-xl" />
+              <div
+                className="transition-transform duration-500 ease-out"
+                style={{
+                  transform: darkMode ? 'rotate(180deg)' : 'rotate(0deg)',
+                }}
+              >
+                <Icon name={darkMode ? 'light_mode' : 'dark_mode'} className="text-xl group-hover/toggle:text-primary transition-colors" />
+              </div>
             </button>
 
             {/* Auth / Profile */}

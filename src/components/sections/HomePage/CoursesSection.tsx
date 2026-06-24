@@ -1,17 +1,18 @@
 import { FadeIn } from '@/components/ui/FadeIn'
+import { useUI } from '@/context/UIContext'
 
 interface Course {
-  char: string
-  thumbGradient: [string, string]
-  charColor: string
-  badge: string
-  badgeColor: string
-  badgeText: string
-  source: string
-  title: string
-  desc: string
-  rating: string
-  stars: number
+  char: string;
+  thumbGradient: [string, string];
+  charColor: string;
+  badge: string;
+  badgeColor: string;
+  badgeText: string;
+  source: string;
+  title: string;
+  desc: string;
+  rating: string;
+  stars: number;
 }
 
 const COURSES: Course[] = [
@@ -68,6 +69,11 @@ function Stars({ count }: { count: number }) {
 }
 
 function CourseCard({ c, delay }: { c: Course; delay: number }) {
+  const { darkMode } = useUI()
+
+  // Adjust dark-text characters to stand out in dark mode
+  const resolvedCharColor = darkMode && c.charColor === '#5c3b2e' ? '#FFE8C9' : c.charColor
+
   return (
     <FadeIn
       delay={delay}
@@ -75,12 +81,16 @@ function CourseCard({ c, delay }: { c: Course; delay: number }) {
     >
       {/* Thumb */}
       <div
-        className="h-32 flex items-center justify-center font-headline text-5xl font-bold relative"
-        style={{ background: `linear-gradient(135deg, ${c.thumbGradient[0]}, ${c.thumbGradient[1]})`, color: c.charColor }}
+        className="h-32 flex items-center justify-center font-headline text-5xl font-bold relative overflow-hidden"
+        style={{ background: `linear-gradient(135deg, ${c.thumbGradient[0]}, ${c.thumbGradient[1]})` }}
       >
-        <span>{c.char}</span>
+        {/* Soft overlay in light, darker overlay in dark mode to blend pastel gradient */}
+        <div className="absolute inset-0 bg-black/[0.03] dark:bg-[#1c1714]/65 transition-colors pointer-events-none" />
+        
+        <span className="relative z-10 transition-colors" style={{ color: resolvedCharColor }}>{c.char}</span>
+        
         <span
-          className="absolute top-3 right-3 text-[11px] font-extrabold px-3 py-1 rounded-full font-label"
+          className="absolute top-3 right-3 text-[11px] font-extrabold px-3 py-1 rounded-full font-label z-10 transition-all duration-300 dark:bg-opacity-20 dark:backdrop-blur-sm dark:border dark:border-current"
           style={{ background: c.badgeColor, color: c.badgeText }}
         >
           {c.badge}

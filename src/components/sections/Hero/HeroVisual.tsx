@@ -18,22 +18,21 @@ const MARKERS: GlobeMarker[] = [
 
 export function HeroVisual() {
   return (
-    <div className="relative hidden md:flex justify-center items-center">
-      {/* Atmospheric glow behind the globe */}
-      <div className="absolute inset-0 bg-primary/5 rounded-full blur-3xl -z-10" />
+    <div className="relative hidden md:flex justify-end items-center">
+      {/* Square stage holds both the glow and the globe so the glow stays a
+          true circle tucked behind the sphere (no tint bleeding outside). */}
+      <div className="relative w-full" style={{ aspectRatio: '1 / 1' }}>
+        {/* Atmospheric glow — circular, inset so the blur stays behind the globe */}
+        <div className="absolute inset-[14%] bg-primary/10 rounded-full blur-2xl -z-10" />
 
-      <Globe3D
-        markers={MARKERS}
-        config={{
-          atmosphereColor: '#4da6ff',
-          atmosphereIntensity: 20,
-          bumpScale: 5,
-          autoRotateSpeed: 0.3,
-        }}
-        onMarkerClick={marker => console.log('Clicked:', marker.label)}
-        onMarkerHover={marker => { if (marker) console.log('Hovering:', marker.label) }}
-        className="w-full max-w-[520px]"
-      />
+        <Globe3D
+          markers={MARKERS}
+          config={{ autoRotateSpeed: 0.3 }}
+          onMarkerClick={marker => console.log('Clicked:', marker.label)}
+          onMarkerHover={marker => { if (marker) console.log('Hovering:', marker.label) }}
+          className="w-full h-full"
+        />
+      </div>
     </div>
   )
 }

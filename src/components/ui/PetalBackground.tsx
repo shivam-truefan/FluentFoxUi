@@ -31,7 +31,7 @@ function createPetal(canvasWidth: number, _canvasHeight: number, initialY?: numb
   }
 }
 
-function drawPetal(ctx: CanvasRenderingContext2D, p: Petal) {
+function drawPetal(ctx: CanvasRenderingContext2D, p: Petal, darkMode: boolean) {
   ctx.save()
   ctx.translate(p.x, p.y)
   ctx.rotate(p.rot)
@@ -42,8 +42,13 @@ function drawPetal(ctx: CanvasRenderingContext2D, p: Petal) {
   ctx.bezierCurveTo(-p.r * 0.8, 0, -p.r * 0.6, -p.r * 0.8, 0, -p.r)
   ctx.closePath()
   const grad = ctx.createRadialGradient(0, 0, 0, 0, 0, p.r)
-  grad.addColorStop(0, 'rgba(255,182,193,0.9)')
-  grad.addColorStop(1, 'rgba(234,107,68,0.4)')
+  if (darkMode) {
+    grad.addColorStop(0, 'rgba(255, 159, 92, 0.95)') // fox-light #FF9F5C
+    grad.addColorStop(1, 'rgba(216, 107, 53, 0.25)') // fox-dark #D86B35
+  } else {
+    grad.addColorStop(0, 'rgba(255, 182, 193, 0.9)')
+    grad.addColorStop(1, 'rgba(234, 107, 68, 0.4)')
+  }
   ctx.fillStyle = grad
   ctx.fill()
   ctx.restore()
@@ -52,6 +57,11 @@ function drawPetal(ctx: CanvasRenderingContext2D, p: Petal) {
 export function PetalBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const { darkMode } = useUI()
+  const darkModeRef = useRef(darkMode)
+
+  useEffect(() => {
+    darkModeRef.current = darkMode
+  }, [darkMode])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -92,7 +102,7 @@ export function PetalBackground() {
         if (p.y > canvas!.height + 30 || p.x < -30 || p.x > canvas!.width + 30) {
           Object.assign(p, createPetal(canvas!.width, canvas!.height))
         }
-        drawPetal(ctx!, p)
+        drawPetal(ctx!, p, darkModeRef.current)
       }
       animId = requestAnimationFrame(animate)
     }

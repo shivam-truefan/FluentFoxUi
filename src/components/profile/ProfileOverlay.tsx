@@ -99,7 +99,7 @@ export function ProfileOverlay({ isOpen, onClose }: ProfileOverlayProps) {
     >
       {/* Backdrop */}
       <div 
-        className="absolute inset-0 bg-slate-950/70 backdrop-blur-3xl cursor-pointer" 
+        className="absolute inset-0 bg-neutral-950/75 backdrop-blur-3xl cursor-pointer" 
         onClick={onClose}
       />
 
@@ -147,8 +147,8 @@ export function ProfileOverlay({ isOpen, onClose }: ProfileOverlayProps) {
 
               const content = (
                 <>
-                  <div className="w-14 h-14 rounded-full bg-white dark:bg-slate-800 shadow-2xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-200 border border-slate-100 dark:border-slate-700">
-                    <Icon name={item.icon} className={`text-2xl ${item.color || 'text-slate-700 dark:text-slate-200'}`} />
+                  <div className="w-14 h-14 rounded-full bg-surface-container-high shadow-2xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-200 border border-outline-variant/30">
+                    <Icon name={item.icon} className={`text-2xl ${item.color || 'text-on-surface-variant'}`} />
                   </div>
                   <span className="text-white font-bold text-xs tracking-wider uppercase drop-shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                     {item.label}

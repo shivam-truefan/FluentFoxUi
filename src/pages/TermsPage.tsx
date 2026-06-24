@@ -12,7 +12,7 @@ export function TermsPage() {
           </p>
         </div>
 
-        <div className="prose prose-slate max-w-none space-y-8 text-on-surface-variant leading-relaxed">
+        <div className="prose prose-stone dark:prose-invert max-w-none space-y-8 text-on-surface-variant leading-relaxed">
           <Section title="1. Acceptance of Terms">
             By accessing or using FoxSensei ("the Service"), you agree to be bound by these Terms of
             Service. If you do not agree to these terms, please do not use the Service. We reserve

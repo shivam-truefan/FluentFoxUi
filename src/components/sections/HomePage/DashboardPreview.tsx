@@ -17,10 +17,10 @@ const MISTAKE_ITEMS = [
 ]
 
 const RECENT_QUIZZES = [
-  { name: 'Hiragana Speed Test',  date: 'Today • 5 min',   score: '95%', color: '#06D6A0' },
-  { name: 'N5 Vocab Chapter 3',   date: 'Yesterday • 8 min', score: '88%', color: '#06D6A0' },
-  { name: 'て-form Grammar Quiz', date: '2 days ago',       score: '62%', color: '#FFD166' },
-  { name: 'Katakana Matching',    date: '3 days ago',       score: '48%', color: '#EA6B44' },
+  { name: 'Hiragana Speed Test',  date: 'Today • 5 min',   score: '95%', colorClass: 'text-emerald-600 dark:text-emerald-400' },
+  { name: 'N5 Vocab Chapter 3',   date: 'Yesterday • 8 min', score: '88%', colorClass: 'text-emerald-600 dark:text-emerald-400' },
+  { name: 'て-form Grammar Quiz', date: '2 days ago',       score: '62%', colorClass: 'text-amber-600 dark:text-amber-400' },
+  { name: 'Katakana Matching',    date: '3 days ago',       score: '48%', colorClass: 'text-primary' },
 ]
 
 export function DashboardPreview() {
@@ -68,13 +68,13 @@ export function DashboardPreview() {
               {/* Stats row */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
                 {[
-                  { num: '🔥 7', label: 'Day Streak',      color: '#EA6B44' },
-                  { num: '142', label: 'Cards Reviewed',   color: undefined },
-                  { num: '18',  label: 'Quizzes Done',     color: undefined },
-                  { num: '82%', label: 'Avg. Score',        color: '#06D6A0' },
+                  { num: '🔥 7', label: 'Day Streak',      colorClass: 'text-primary' },
+                  { num: '142', label: 'Cards Reviewed',   colorClass: 'text-on-surface' },
+                  { num: '18',  label: 'Quizzes Done',     colorClass: 'text-on-surface' },
+                  { num: '82%', label: 'Avg. Score',        colorClass: 'text-emerald-600 dark:text-emerald-400' },
                 ].map(s => (
                   <div key={s.label} className="bg-surface-container rounded-xl p-4 text-center">
-                    <div className="text-2xl font-black font-headline" style={s.color ? { color: s.color } : {}}>{s.num}</div>
+                    <div className={`text-2xl font-black font-headline ${s.colorClass}`}>{s.num}</div>
                     <div className="text-[10px] font-bold text-on-surface-variant font-label mt-0.5 uppercase tracking-wide">{s.label}</div>
                   </div>
                 ))}
@@ -89,9 +89,9 @@ export function DashboardPreview() {
                     <div key={m.topic} className="flex items-center mb-2.5 gap-2">
                       <span className="text-xs text-on-surface-variant font-body flex-shrink-0 w-[130px] truncate">{m.topic}</span>
                       <div className="flex-1 h-1.5 rounded-full bg-outline-variant/30">
-                        <div className="h-full rounded-full" style={{ width: `${m.pct}%`, background: '#EA6B44' }} />
+                        <div className="h-full rounded-full bg-primary" style={{ width: `${m.pct}%` }} />
                       </div>
-                      <span className="text-xs font-bold font-label" style={{ color: '#EA6B44' }}>{m.pct}%</span>
+                      <span className="text-xs font-bold font-label text-primary">{m.pct}%</span>
                     </div>
                   ))}
                 </div>
@@ -105,7 +105,7 @@ export function DashboardPreview() {
                         <p className="text-xs font-bold text-on-surface font-label">{q.name}</p>
                         <p className="text-[10px] text-on-surface-variant font-body">{q.date}</p>
                       </div>
-                      <span className="text-xs font-extrabold font-label" style={{ color: q.color }}>{q.score}</span>
+                      <span className={`text-xs font-extrabold font-label ${q.colorClass}`}>{q.score}</span>
                     </div>
                   ))}
                 </div>

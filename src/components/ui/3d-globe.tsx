@@ -144,13 +144,13 @@ export function Globe3D({
       phi: phiRef.current,
       theta: THETA,
       dark: darkMode ? 1 : 0,
-      diffuse: 1.4,
+      diffuse: darkMode ? 1.1 : 1.4,
       mapSamples: 16000,
-      mapBrightness: darkMode ? 1.8 : 1.2,
-      mapBaseBrightness: darkMode ? 0.05 : 0.0,
-      baseColor: darkMode ? [0.18, 0.14, 0.12] : [1, 0.97, 0.94],
+      mapBrightness: darkMode ? 4.5 : 1.2,
+      mapBaseBrightness: darkMode ? 0.18 : 0.0,
+      baseColor: darkMode ? [0.12, 0.13, 0.17] : [1, 0.97, 0.94],
       markerColor: [0.918, 0.42, 0.267],   // fox orange #EA6B44
-      glowColor: darkMode ? [0.9, 0.55, 0.35] : [1, 0.82, 0.65],
+      glowColor: darkMode ? [0.55, 0.35, 0.25] : [1, 0.88, 0.78],
       markers: markers.map(m => ({ location: [m.lat, m.lng] as [number, number], size: 0.055 })),
     })
 

@@ -88,7 +88,7 @@ function Shell() {
   const { isProfileOverlayOpen, setIsProfileOverlayOpen, backgroundAnimation } = useUI()
 
   return (
-    <div className="bg-surface text-on-surface font-body selection:bg-primary-fixed selection:text-primary min-h-screen flex flex-col relative overflow-x-hidden">
+    <div className="bg-surface text-on-surface transition-colors duration-300 ease-in-out font-body selection:bg-primary-fixed selection:text-primary min-h-screen flex flex-col relative overflow-x-hidden">
       {backgroundAnimation === 'petals' && <PetalBackground />}
       {backgroundAnimation === 'fish'   && <KoiBackground />}
 

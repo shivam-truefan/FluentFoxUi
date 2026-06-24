@@ -46,8 +46,8 @@ export function InteractiveWord({ kanji, reading, meaning, showAll = false }: In
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 4, scale: 0.95 }}
             style={{ transformOrigin: 'bottom center', display: 'block' }}
-            className={`px-4 py-2.5 text-white rounded-xl shadow-2xl whitespace-nowrap text-sm flex flex-col items-center gap-1 min-w-max relative ${
-              isAnataTrap ? 'bg-error' : 'bg-zinc-900/95 backdrop-blur-md'
+            className={`px-4 py-2.5 rounded-xl shadow-2xl border border-outline-variant/20 backdrop-blur-md whitespace-nowrap text-sm flex flex-col items-center gap-1 min-w-max relative ${
+              isAnataTrap ? 'bg-error text-white' : 'bg-surface-container-highest/95 text-on-surface'
             }`}
           >
             <span className="text-[10px] uppercase tracking-[0.2em] opacity-80 font-black leading-none">
@@ -55,7 +55,7 @@ export function InteractiveWord({ kanji, reading, meaning, showAll = false }: In
             </span>
             <span className="font-bold text-base">{meaning}</span>
             <div className={`absolute top-full left-1/2 -translate-x-1/2 border-[6px] border-transparent ${
-              isAnataTrap ? 'border-t-error' : 'border-t-zinc-900/95'
+              isAnataTrap ? 'border-t-error' : 'border-t-surface-container-highest'
             }`} />
           </motion.span>
         </div>

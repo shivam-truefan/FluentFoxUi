@@ -11,6 +11,7 @@ import { OtpForm } from './OtpForm'
 import { ForgotPasswordForm } from './ForgotPasswordForm'
 import { CloseButton } from '@/components/ui/CloseButton'
 import { Icon } from '@/components/ui/Icon'
+import { Button } from '@/components/ui/Button'
 
 export function AuthModal() {
   const { isOpen, activeTab, closeModal, setActiveTab } = useModal()
@@ -72,10 +73,10 @@ export function AuthModal() {
 
   return createPortal(
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-on-surface/40 backdrop-blur-sm p-4 md:p-8"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 md:p-8"
       onClick={e => e.target === e.currentTarget && closeModal()}
     >
-      <div className={`bg-surface-container-lowest w-full rounded-xl shadow-[0_40px_80px_rgba(25,28,29,0.12)] overflow-hidden flex flex-col md:flex-row border border-outline-variant/10 relative transition-[max-width] duration-200 ${
+      <div className={`bg-surface-container-lowest w-full rounded-2xl shadow-elevation-3 overflow-hidden flex flex-col md:flex-row border border-outline-variant/50 relative transition-[max-width] duration-200 ${
             activeTab === 'signup' && !isFullWidth ? 'max-w-3xl' : 'max-w-2xl'
           }`}>
 
@@ -170,13 +171,14 @@ function RegisteredStep({ message, onClose, onLogin }: RegisteredStepProps) {
       </div>
 
       <div className="flex flex-col gap-3 w-full max-w-xs">
-        <button
+        <Button
           type="button"
+          variant="primary"
           onClick={onLogin}
-          className="w-full bg-primary text-on-primary font-headline font-bold py-3.5 rounded-lg shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+          className="w-full py-3.5 font-headline"
         >
           Go to Login
-        </button>
+        </Button>
         <button
           type="button"
           onClick={onClose}

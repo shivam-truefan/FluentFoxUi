@@ -171,7 +171,7 @@ export function CountryCodePicker({ value, onChange }: CountryCodePickerProps) {
         ref={triggerRef}
         type="button"
         onClick={handleOpen}
-        className="flex items-center gap-1.5 h-full bg-surface-container-low rounded-l-lg px-3 py-3 text-on-surface hover:bg-surface-container transition-colors border-r border-surface-container-highest"
+        className="flex items-center gap-1.5 h-full bg-surface-container-low rounded-l-xl px-3 py-3 text-on-surface hover:bg-surface-container transition-colors border-r border-surface-container-highest"
         aria-haspopup="listbox"
         aria-expanded={open}
       >
@@ -190,7 +190,7 @@ export function CountryCodePicker({ value, onChange }: CountryCodePickerProps) {
         <div
           ref={dropdownRef}
           style={{ position: 'fixed', top: dropdownPos.top, left: dropdownPos.left, zIndex: 9999 }}
-          className="w-72 bg-surface-container-lowest rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.2)] border border-outline-variant/20 overflow-hidden"
+          className="w-72 bg-surface-container-lowest rounded-xl shadow-elevation-2 border border-outline-variant/40 overflow-hidden"
         >
           {/* Search input */}
           <div className="p-2 border-b border-surface-container-high">
@@ -200,14 +200,14 @@ export function CountryCodePicker({ value, onChange }: CountryCodePickerProps) {
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder="Search country or dial code…"
-              className="w-full bg-surface-container-low rounded-lg px-3 py-2 text-sm text-on-surface placeholder:text-outline/50 outline-none focus:ring-2 focus:ring-primary/20 transition-all"
+              className="w-full bg-surface-container-low rounded-xl px-3 py-2 text-sm text-on-surface placeholder:text-outline/50 outline-none focus:ring-2 focus:ring-primary/20 transition-all"
             />
           </div>
 
           {/* Country list */}
           <div className="max-h-52 overflow-y-auto">
             {!search.trim() && (
-              <p className="px-4 pt-2 pb-1 text-[10px] uppercase tracking-widest font-bold text-on-surface-variant/60">
+              <p className="px-4 pt-2 pb-1 text-2xs uppercase tracking-widest font-bold text-on-surface-variant/60">
                 Common Countries
               </p>
             )}

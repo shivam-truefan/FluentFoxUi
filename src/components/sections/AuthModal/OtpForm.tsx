@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect, type ClipboardEvent, type KeyboardEvent } from 'react'
 import { authService } from '@/api/services/authService'
 import { Icon } from '@/components/ui/Icon'
+import { Button } from '@/components/ui/Button'
 
 const OTP_LENGTH = 6
 const RESEND_COOLDOWN = 60 // seconds
@@ -120,7 +121,7 @@ export function OtpForm({ email, onSuccess, onBack }: OtpFormProps) {
   // ── render ───────────────────────────────────────────────────────────────
 
   const inputBase =
-    'w-11 h-16 text-center text-2xl font-bold font-headline bg-surface-container-highest border-none rounded-lg focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all outline-none caret-transparent'
+    'w-11 h-16 text-center text-2xl font-bold font-headline bg-surface-container-highest border-none rounded-xl focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all outline-none caret-transparent'
 
   return (
     <div className="text-center">
@@ -171,14 +172,15 @@ export function OtpForm({ email, onSuccess, onBack }: OtpFormProps) {
       )}
 
       {/* CTA */}
-      <button
+      <Button
         type="button"
+        variant="primary"
         onClick={handleVerify}
         disabled={loading}
-        className="w-full bg-primary text-on-primary py-4 rounded-lg font-headline font-bold text-sm tracking-wide shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all mb-8 disabled:opacity-60 disabled:cursor-not-allowed"
+        className="w-full py-4 font-headline text-sm tracking-wide mb-8 disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {loading ? 'Verifying…' : 'Verify & Join'}
-      </button>
+      </Button>
 
       {/* Footer links */}
       <div className="space-y-4">

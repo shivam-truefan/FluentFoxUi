@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useUI } from '@/context/UIContext'
+import { useReducedMotion } from '@/hooks/useReducedMotion'
 
 interface Petal {
   x: number
@@ -58,6 +59,7 @@ export function PetalBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const { darkMode } = useUI()
   const darkModeRef = useRef(darkMode)
+  const reducedMotion = useReducedMotion()
 
   useEffect(() => {
     darkModeRef.current = darkMode
@@ -71,6 +73,19 @@ export function PetalBackground() {
 
     canvas.width = window.innerWidth
     canvas.height = window.innerHeight
+
+    if (reducedMotion) {
+      // Respect the user's motion preference: no petals spawned, no rAF loop
+      // started at all — render an empty canvas rather than a frozen frame.
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      const handleResize = () => {
+        canvas.width = window.innerWidth
+        canvas.height = window.innerHeight
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+      }
+      window.addEventListener('resize', handleResize)
+      return () => window.removeEventListener('resize', handleResize)
+    }
 
     const petals: Petal[] = Array.from({ length: PETAL_COUNT }, (_, i) =>
       createPetal(canvas.width, canvas.height, i < PETAL_COUNT ? Math.random() * canvas.height : undefined)
@@ -113,7 +128,7 @@ export function PetalBackground() {
       window.removeEventListener('resize', handleResize)
       document.removeEventListener('visibilitychange', handleVisibility)
     }
-  }, [])
+  }, [reducedMotion])
 
   return (
     <canvas

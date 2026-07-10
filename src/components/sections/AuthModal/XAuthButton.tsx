@@ -1,5 +1,6 @@
 import { motion, useAnimation } from "framer-motion";
 import { useRef, useState } from "react";
+import { useUI } from "@/context/UIContext";
 
 const XLogo = ({ fill }: { fill: string }) => (
   <svg viewBox="0 0 24 24" width="22" height="22" style={{ fill, transition: "fill 0.2s ease" }}>
@@ -12,6 +13,7 @@ export function XAuthButton({ onClick, disabled }: { onClick: () => void; disabl
   const xControls = useAnimation();
   const bgControls = useAnimation();
   const [hovered, setHovered] = useState(false);
+  const { darkMode } = useUI();
 
   const handleHoverStart = () => {
     setHovered(true);
@@ -49,7 +51,7 @@ export function XAuthButton({ onClick, disabled }: { onClick: () => void; disabl
         <div className="relative w-full py-3 flex items-center justify-center cursor-pointer select-none">
           {/* X Icon */}
           <motion.div animate={xControls} initial={{ scale: 1 }} className="relative z-20">
-            <XLogo fill={hovered ? "#ffffff" : document.documentElement.classList.contains("dark") ? "#ECD4D1" : "#000000"} />
+            <XLogo fill={hovered ? "#ffffff" : darkMode ? "#ECD4D1" : "#000000"} />
           </motion.div>
         </div>
       </button>

@@ -3,6 +3,7 @@ import type { SignUpPayload } from '@/types'
 import { authService } from '@/api/services/authService'
 import { ApiError, resolveErrorMessage } from '@/api/errors'
 import { Icon } from '@/components/ui/Icon'
+import { Button } from '@/components/ui/Button'
 import { GoogleAuthButton } from './GoogleAuthButton'
 import { XAuthButton } from './XAuthButton'
 import { CountryCodePicker, ALL_COUNTRIES, TOP_30 } from './CountryCodePicker'
@@ -30,9 +31,9 @@ function getPasswordStrength(pw: string): StrengthLevel {
 
 const strengthConfig: Record<StrengthLevel, { label: string; bars: number; color: string }> = {
   weak:          { label: 'Weak',        bars: 1, color: 'bg-error' },
-  fair:          { label: 'Fair',        bars: 2, color: 'bg-amber-400' },
-  strong:        { label: 'Strong',      bars: 3, color: 'bg-green-400' },
-  'very-strong': { label: 'Very Strong', bars: 4, color: 'bg-green-500' },
+  fair:          { label: 'Fair',        bars: 2, color: 'bg-warning' },
+  strong:        { label: 'Strong',      bars: 3, color: 'bg-success/70' },
+  'very-strong': { label: 'Very Strong', bars: 4, color: 'bg-success' },
 }
 
 // ── Language options ──────────────────────────────────────────────────────────
@@ -129,9 +130,9 @@ export function SignUpForm({ onSuccess }: SignUpFormProps) {
   // ── Shared styles ────────────────────────────────────────────────────────
 
   const inputClass =
-    'w-full bg-surface-container-low border-0 rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all placeholder:text-outline/50 outline-none text-sm'
+    'w-full bg-surface-container-low border-0 rounded-xl px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all placeholder:text-outline/50 outline-none text-sm'
   const labelClass =
-    'block text-[10px] uppercase tracking-widest font-bold text-on-surface-variant px-1 mb-1.5'
+    'block text-2xs uppercase tracking-widest font-bold text-on-surface-variant px-1 mb-1.5'
 
   // ── Derived ──────────────────────────────────────────────────────────────
 
@@ -254,7 +255,7 @@ export function SignUpForm({ onSuccess }: SignUpFormProps) {
           onChange={handleUsernameChange}
           className={inputClass}
         />
-        <p className="mt-1 px-1 text-[10px] text-on-surface-variant/60">
+        <p className="mt-1 px-1 text-xs text-on-surface-variant/60">
           Letters, numbers and underscores only.
         </p>
       </div>
@@ -299,7 +300,7 @@ export function SignUpForm({ onSuccess }: SignUpFormProps) {
             (optional)
           </span>
         </label>
-        <div className="flex rounded-lg overflow-hidden ring-1 ring-transparent focus-within:ring-2 focus-within:ring-primary/20 transition-all">
+        <div className="flex rounded-xl overflow-hidden ring-1 ring-transparent focus-within:ring-2 focus-within:ring-primary/20 transition-all">
           <CountryCodePicker value={dialCountry} onChange={setDialCountry} />
           <input
             type="tel"
@@ -309,11 +310,11 @@ export function SignUpForm({ onSuccess }: SignUpFormProps) {
             value={phoneDigits}
             onChange={handlePhoneChange}
             onBlur={handlePhoneBlur}
-            className="flex-1 bg-surface-container-low px-4 py-3 text-on-surface text-sm placeholder:text-outline/50 outline-none rounded-r-lg"
+            className="flex-1 bg-surface-container-low px-4 py-3 text-on-surface text-sm placeholder:text-outline/50 outline-none rounded-r-xl"
           />
         </div>
         {phoneError && (
-          <p className="mt-1 px-1 text-[11px] text-error font-medium">{phoneError}</p>
+          <p className="mt-1 px-1 text-xs text-error font-medium">{phoneError}</p>
         )}
       </div>
 
@@ -353,7 +354,7 @@ export function SignUpForm({ onSuccess }: SignUpFormProps) {
                 />
               ))}
             </div>
-            <p className="text-[10px] text-on-surface-variant font-medium">
+            <p className="text-xs text-on-surface-variant font-medium">
               Strength: <span className="font-bold">{strengthMeta.label}</span>
             </p>
           </div>
@@ -373,7 +374,7 @@ export function SignUpForm({ onSuccess }: SignUpFormProps) {
           className={`${inputClass} ${passwordMismatch ? 'ring-2 ring-error/40' : ''}`}
         />
         {passwordMismatch && (
-          <p className="mt-1 px-1 text-[11px] text-error font-medium">Passwords do not match.</p>
+          <p className="mt-1 px-1 text-xs text-error font-medium">Passwords do not match.</p>
         )}
       </div>
 
@@ -384,19 +385,20 @@ export function SignUpForm({ onSuccess }: SignUpFormProps) {
 
       {/* Submit */}
       <div className="pt-1">
-        <button
+        <Button
           type="submit"
+          variant="primary"
           disabled={loading}
-          className="w-full bg-primary text-on-primary font-headline font-bold py-3.5 rounded-lg shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
+          className="w-full py-3.5 font-headline disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {loading ? 'Creating Account…' : 'Create Account'}
-        </button>
+        </Button>
       </div>
 
       {/* Divider */}
       <div className="relative flex items-center py-0.5">
         <div className="flex-grow border-t border-surface-container-high" />
-        <span className="flex-shrink mx-4 text-[10px] text-outline font-bold uppercase tracking-tighter">
+        <span className="flex-shrink mx-4 text-2xs text-outline font-bold uppercase tracking-tighter">
           Or continue with
         </span>
         <div className="flex-grow border-t border-surface-container-high" />
@@ -409,7 +411,7 @@ export function SignUpForm({ onSuccess }: SignUpFormProps) {
       </div>
 
       {/* Legal */}
-      <p className="text-center text-[10px] text-on-surface-variant/70 leading-relaxed max-w-[280px] mx-auto">
+      <p className="text-center text-xs text-on-surface-variant/70 leading-relaxed max-w-[280px] mx-auto">
         By signing up, you agree to our{' '}
         <a href="/terms" className="underline hover:text-primary">Terms of Service</a>
         {' '}and{' '}

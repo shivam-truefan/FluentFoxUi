@@ -11,7 +11,7 @@ export function CloseButton({ onClick, className = '', 'aria-label': ariaLabel =
     <motion.button
       onClick={onClick}
       aria-label={ariaLabel}
-      className={`w-8 h-8 flex items-center justify-center rounded-full text-on-surface-variant transition-colors hover:text-error hover:bg-error-container ${className}`}
+      className={`min-w-11 min-h-11 flex items-center justify-center rounded-full text-on-surface-variant transition-colors hover:text-error hover:bg-error-container ${className}`}
       whileHover={{ rotate: 90, scale: 1.15 }}
       whileTap={{ scale: 0.85 }}
       transition={{ type: 'spring', stiffness: 280, damping: 18 }}

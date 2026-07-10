@@ -83,7 +83,7 @@ export function VerifyEmailPage() {
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="min-h-screen bg-surface flex flex-col items-center justify-center px-4">
+    <div className="min-h-dvh bg-surface flex flex-col items-center justify-center px-4">
       {/* Logo */}
       <Link to="/" className="flex items-end gap-0 mb-12">
         <FoxLogo size={44} />
@@ -92,7 +92,7 @@ export function VerifyEmailPage() {
         </span>
       </Link>
 
-      <div className="w-full max-w-md bg-surface-container-lowest rounded-2xl shadow-[0_32px_64px_rgba(25,28,29,0.10)] border border-outline-variant/10 p-10 text-center">
+      <div className="w-full max-w-md bg-surface-container-lowest rounded-2xl shadow-elevation-3 border border-outline-variant/40 p-10 text-center">
         {state === 'loading' && <LoadingState />}
         {state === 'success_logged_in' && <SuccessLoggedInState />}
         {state === 'success_check_login' && <SuccessCheckLoginState />}
@@ -137,7 +137,7 @@ function LoadingState() {
 function SuccessLoggedInState() {
   return (
     <div className="py-4">
-      <IconRing name="verified" color="bg-green-500/10 text-green-500" />
+      <IconRing name="verified" color="bg-success/15 text-success" />
       <h1 className="text-2xl font-headline font-bold text-on-surface tracking-tight mb-3">
         Email Verified!
       </h1>
@@ -163,7 +163,7 @@ function SuccessCheckLoginState() {
       </p>
       <Link
         to="/?login=1"
-        className="inline-block w-full bg-primary text-on-primary font-headline font-bold py-3.5 rounded-lg shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+        className="inline-block w-full bg-primary text-on-primary font-headline font-bold py-3.5 rounded-lg shadow-lg shadow-primary/20 dark:shadow-primary/10 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
       >
         Go to Login
       </Link>
@@ -174,7 +174,7 @@ function SuccessCheckLoginState() {
 function ExpiredState() {
   return (
     <div className="py-4">
-      <IconRing name="link_off" color="bg-amber-400/10 text-amber-500" />
+      <IconRing name="link_off" color="bg-warning/15 text-warning" />
       <h1 className="text-2xl font-headline font-bold text-on-surface tracking-tight mb-3">
         Link Expired
       </h1>
@@ -185,7 +185,7 @@ function ExpiredState() {
       <div className="flex flex-col gap-3">
         <Link
           to="/?signup=1"
-          className="inline-block w-full bg-primary text-on-primary font-headline font-bold py-3.5 rounded-lg shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+          className="inline-block w-full bg-primary text-on-primary font-headline font-bold py-3.5 rounded-lg shadow-lg shadow-primary/20 dark:shadow-primary/10 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
         >
           Sign Up Again
         </Link>
@@ -203,7 +203,7 @@ function ExpiredState() {
 function AlreadyVerifiedState() {
   return (
     <div className="py-4">
-      <IconRing name="check_circle" color="bg-green-500/10 text-green-500" />
+      <IconRing name="check_circle" color="bg-success/15 text-success" />
       <h1 className="text-2xl font-headline font-bold text-on-surface tracking-tight mb-3">
         Already Verified
       </h1>
@@ -212,7 +212,7 @@ function AlreadyVerifiedState() {
       </p>
       <Link
         to="/?login=1"
-        className="inline-block w-full bg-primary text-on-primary font-headline font-bold py-3.5 rounded-lg shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+        className="inline-block w-full bg-primary text-on-primary font-headline font-bold py-3.5 rounded-lg shadow-lg shadow-primary/20 dark:shadow-primary/10 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
       >
         Go to Login
       </Link>
@@ -234,7 +234,7 @@ function InvalidState() {
       <div className="flex flex-col gap-3">
         <Link
           to="/"
-          className="inline-block w-full bg-primary text-on-primary font-headline font-bold py-3.5 rounded-lg shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+          className="inline-block w-full bg-primary text-on-primary font-headline font-bold py-3.5 rounded-lg shadow-lg shadow-primary/20 dark:shadow-primary/10 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
         >
           Back to Home
         </Link>

@@ -126,7 +126,7 @@ export function ProfileOverlay({ isOpen, onClose }: ProfileOverlayProps) {
       <div className="relative w-full h-full pointer-events-none">
         {/* Enlarged Image (Transitional) */}
         <div 
-          className="fixed z-[10000] border-4 border-white/20 shadow-[0_0_100px_rgba(0,0,0,0.6)] overflow-hidden transition-all duration-500 cubic-bezier(0.34, 1.56, 0.64, 1) pointer-events-auto"
+          className="fixed z-[10000] border-4 border-white/20 shadow-elevation-3 overflow-hidden transition-all duration-500 cubic-bezier(0.34, 1.56, 0.64, 1) pointer-events-auto"
           style={isOpen ? finalStyles : initialStyles}
         >
           <img
@@ -147,7 +147,7 @@ export function ProfileOverlay({ isOpen, onClose }: ProfileOverlayProps) {
 
               const content = (
                 <>
-                  <div className="w-14 h-14 rounded-full bg-surface-container-high shadow-2xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-200 border border-outline-variant/30">
+                  <div className="w-14 h-14 rounded-full bg-surface-container-high shadow-elevation-2 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-200 border border-outline-variant/30">
                     <Icon name={item.icon} className={`text-2xl ${item.color || 'text-on-surface-variant'}`} />
                   </div>
                   <span className="text-white font-bold text-xs tracking-wider uppercase drop-shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200">
@@ -203,7 +203,7 @@ export function ProfileOverlay({ isOpen, onClose }: ProfileOverlayProps) {
                     }
                     setShowPicker(false)
                   }}
-                  className="absolute left-1/2 top-1/2 -ml-10 -mt-10 w-20 h-20 rounded-full border-4 border-white/20 hover:border-white transition-all shadow-xl overflow-hidden group pointer-events-auto hover:scale-125 z-[10020]"
+                  className="absolute left-1/2 top-1/2 -ml-10 -mt-10 w-20 h-20 rounded-full border-4 border-white/20 hover:border-white transition-all shadow-elevation-2 overflow-hidden group pointer-events-auto hover:scale-125 z-[10020]"
                   style={{
                     transform: `translate(${x}px, ${y}px)`,
                     transitionDelay: `${index * 40}ms`

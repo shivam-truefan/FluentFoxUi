@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { authService } from '@/api/services/authService'
 import { Icon } from '@/components/ui/Icon'
+import { Button } from '@/components/ui/Button'
 
 interface ForgotPasswordFormProps {
   onBack: () => void
@@ -25,7 +26,7 @@ export function ForgotPasswordForm({ onBack }: ForgotPasswordFormProps) {
   if (sent) {
     return (
       <div className="text-center space-y-6 py-4">
-        <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto">
+        <div className="w-16 h-16 bg-success/15 text-success rounded-full flex items-center justify-center mx-auto">
           <Icon name="mark_email_read" className="text-3xl" filled />
         </div>
         <div className="space-y-2">
@@ -62,7 +63,7 @@ export function ForgotPasswordForm({ onBack }: ForgotPasswordFormProps) {
 
       <form onSubmit={handleSubmit} className="space-y-5">
         <div className="space-y-1.5">
-          <label className="block text-[10px] uppercase tracking-widest font-bold text-on-surface-variant px-1">
+          <label className="block text-2xs uppercase tracking-widest font-bold text-on-surface-variant px-1">
             Email Address
           </label>
           <input
@@ -72,17 +73,18 @@ export function ForgotPasswordForm({ onBack }: ForgotPasswordFormProps) {
             placeholder="haruki@foxsensei.jp"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full bg-surface-container-low border-0 rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all placeholder:text-outline/50 outline-none"
+            className="w-full bg-surface-container-low border-0 rounded-xl px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all placeholder:text-outline/50 outline-none"
           />
         </div>
 
-        <button
+        <Button
           type="submit"
+          variant="primary"
           disabled={loading}
-          className="w-full bg-primary hover:bg-primary-container text-on-primary font-headline font-bold py-4 rounded-lg shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
+          className="w-full py-4 font-headline disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {loading ? 'Sending…' : 'Send Reset Link'}
-        </button>
+        </Button>
       </form>
 
       <button

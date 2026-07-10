@@ -4,6 +4,7 @@ import { authService } from '@/api/services/authService'
 import { ApiError } from '@/api/errors'
 import { resolveErrorMessage } from '@/api/errors'
 import { Icon } from '@/components/ui/Icon'
+import { Button } from '@/components/ui/Button'
 import { GoogleAuthButton } from './GoogleAuthButton'
 import { XAuthButton } from './XAuthButton'
 
@@ -21,9 +22,9 @@ export function LoginForm({ onSuccess, onForgotPassword }: LoginFormProps) {
   const [showResend, setShowResend]     = useState(false)
 
   const inputClass =
-    'w-full bg-surface-container-low border-0 rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all placeholder:text-outline/50 outline-none'
+    'w-full bg-surface-container-low border-0 rounded-xl px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all placeholder:text-outline/50 outline-none'
   const labelClass =
-    'block text-[10px] uppercase tracking-widest font-bold text-on-surface-variant px-1'
+    'block text-2xs uppercase tracking-widest font-bold text-on-surface-variant px-1'
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
@@ -89,7 +90,7 @@ export function LoginForm({ onSuccess, onForgotPassword }: LoginFormProps) {
         <button
           type="button"
           onClick={onForgotPassword}
-          className="text-[10px] text-primary font-bold uppercase tracking-wider hover:underline"
+          className="text-xs text-primary font-bold uppercase tracking-wider hover:underline"
         >
           Forgot password?
         </button>
@@ -103,7 +104,7 @@ export function LoginForm({ onSuccess, onForgotPassword }: LoginFormProps) {
             <button
               type="button"
               onClick={onForgotPassword}
-              className="text-[11px] text-primary font-bold hover:underline px-1"
+              className="text-xs text-primary font-bold hover:underline px-1"
             >
               Resend verification email →
             </button>
@@ -113,19 +114,20 @@ export function LoginForm({ onSuccess, onForgotPassword }: LoginFormProps) {
 
       {/* Submit — disabled while loading to prevent double-submit */}
       <div className="pt-2">
-        <button
+        <Button
           type="submit"
+          variant="primary"
           disabled={loading}
-          className="w-full bg-primary hover:bg-primary-container text-on-primary font-headline font-bold py-4 rounded-lg shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100"
+          className="w-full py-4 font-headline disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100"
         >
           {loading ? 'Signing In…' : 'Sign In'}
-        </button>
+        </Button>
       </div>
 
       {/* Divider */}
       <div className="relative flex items-center py-1">
         <div className="flex-grow border-t border-surface-container-high" />
-        <span className="flex-shrink mx-4 text-[10px] text-outline font-bold uppercase tracking-tighter">
+        <span className="flex-shrink mx-4 text-2xs text-outline font-bold uppercase tracking-tighter">
           Or continue with
         </span>
         <div className="flex-grow border-t border-surface-container-high" />

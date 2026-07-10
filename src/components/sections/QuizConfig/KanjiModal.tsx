@@ -15,8 +15,8 @@ export function KanjiModal({ open, kanji, selected, onToggle, onConfirm, onCance
   if (!open) return null
 
   return (
-    <div className="fixed inset-0 bg-on-surface/60 backdrop-blur-sm z-[100] flex items-center justify-center p-6">
-      <div className="bg-surface-container-lowest w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl">
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-6">
+      <div className="bg-surface-container-lowest w-full max-w-2xl rounded-3xl overflow-hidden shadow-elevation-3">
         {/* Header */}
         <div className="p-8 border-b border-surface-container flex justify-between items-center">
           <h3 className="text-2xl font-bold font-headline">Select Kanji Characters</h3>
